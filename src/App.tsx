@@ -6,6 +6,7 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { Playlist } from './lib/types';
 import Tracklist from './components/tracklist';
 import { loadSavedPlaylists } from './hooks/use-file-management';
+import TitleBar from './components/title-bar';
 
 // Define a default empty playlist
 const defaultPlaylist: Playlist = {
@@ -26,6 +27,9 @@ function App() {
 	return (
 		<>
 			<ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+				<div className='fixed top-0 inset-x-0 z-50'>
+					<TitleBar />
+				</div>
 				<SidebarProvider className=''>
 					<AppSidebar currentPlaylist={currentPlaylist} setCurrentPlaylist={setCurrentPlaylist} savedPlaylists={savedPlaylists} setSavedPlaylists={setSavedPlaylists} />
 					<main className='flex flex-col w-full h-full'>

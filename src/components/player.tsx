@@ -5,7 +5,7 @@ import { DropletIcon, GaugeCircleIcon, PauseIcon, PlayIcon, RepeatIcon, ShuffleI
 import { ThemeToggle } from './theme-toggle';
 import { formatTime } from '@/hooks/use-utilities';
 import { Playlist } from '@/lib/types';
-import BackgroundEffect from './background-effect';
+// import BackgroundEffect from './background-effect';
 import { useEffect } from 'react';
 
 function Player({ playlist, onTrackChange }: { playlist: Playlist; onTrackChange: (index: number) => void }) {
@@ -48,7 +48,7 @@ function Player({ playlist, onTrackChange }: { playlist: Playlist; onTrackChange
 				)}
 			</div>
 
-			<BackgroundEffect cover={metadata?.cover} />
+			{/* <BackgroundEffect cover={metadata?.cover} /> */}
 
 			<div className='flex flex-col justify-center min-w-md'>
 				<h3 className='text-base font-medium line-clamp-2'>{metadata?.title || currentTrack.name || 'No track selected'}</h3>

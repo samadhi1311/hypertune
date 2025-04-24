@@ -36,7 +36,7 @@ function Player({ playlist, onTrackChange }: { playlist: Playlist; onTrackChange
 	const currentTrack = playlist.tracks[currentIndex] || { url: '', name: '' };
 
 	return (
-		<div className='flex flex-row gap-4 items-center justify-around bg-sidebar/20 p-4 m-2 rounded-md border border-border inset-shadow-[0px_0px_32px] inset-shadow-border/50 backdrop-blur-xl'>
+		<div className='flex flex-row gap-4 items-center justify-around bg-sidebar/80 p-4 m-2 rounded-md border border-input inset-shadow-[0px_0px_32px] inset-shadow-border/50'>
 			{/* Album art and metadata */}
 			<div className='size-24 aspect-square'>
 				{metadata?.cover ? (
@@ -50,10 +50,10 @@ function Player({ playlist, onTrackChange }: { playlist: Playlist; onTrackChange
 
 			{/* <BackgroundEffect cover={metadata?.cover} /> */}
 
-			<div className='flex flex-col justify-center min-w-md'>
-				<h3 className='text-base font-medium line-clamp-2'>{metadata?.title || currentTrack.name || 'No track selected'}</h3>
-				<p className='text-sm font-medium text-muted-foreground line-clamp-2'>{metadata?.artist || 'Unknown Artist'}</p>
-				<p className='text-xs text-muted-foreground line-clamp-2'>{metadata?.album}</p>
+			<div className='flex flex-col justify-center min-w-3xs max-w-sm w-full'>
+				<h3 className='text-base font-medium truncate'>{metadata?.title || currentTrack.name || 'No track selected'}</h3>
+				<p className='text-sm font-medium text-muted-foreground truncate'>{metadata?.artist || 'Unknown Artist'}</p>
+				<p className='text-xs text-muted-foreground truncate'>{metadata?.album}</p>
 			</div>
 			<div className='flex flex-row gap-2 items-center'>
 				<Button onClick={handlePrev} disabled={!currentTrack.url} className='rounded-full size-10' variant='ghost'>
@@ -81,7 +81,7 @@ function Player({ playlist, onTrackChange }: { playlist: Playlist; onTrackChange
 				<span className='text-sm w-16 text-center'>{formatTime(duration)}</span>
 			</div>
 
-			<div className='flex flex-row gap-2 max-w-32 w-full'>
+			<div className='flex flex-row gap-2 min-w-16 max-w-32 w-full'>
 				<Volume2Icon />
 				<Slider defaultValue={[80]} min={0} max={100} step={1} onValueChange={(value) => setVolume(value[0] / 100)} />
 			</div>

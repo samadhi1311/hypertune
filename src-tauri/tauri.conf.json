@@ -1,0 +1,39 @@
+{
+	"$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+	"productName": "hypertune",
+	"version": "0.1.0",
+	"identifier": "com.samadhi1311.hypertune",
+	"build": {
+		"frontendDist": "../dist",
+		"devUrl": "http://localhost:5173",
+		"beforeDevCommand": "pnpm run dev",
+		"beforeBuildCommand": "pnpm run build"
+	},
+	"app": {
+		"windows": [
+			{
+				"title": "hypertune",
+				"width": 1280,
+				"height": 720,
+				"resizable": true,
+				"fullscreen": false,
+				"center": true,
+				"decorations": false,
+				"transparent": true,
+				"minWidth": 1024,
+				"minHeight": 480,
+				"windowEffects": {
+					"effects": ["acrylic"]
+				}
+			}
+		],
+		"security": {
+			"csp": null
+		}
+	},
+	"bundle": {
+		"active": true,
+		"targets": "all",
+		"icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"]
+	}
+}

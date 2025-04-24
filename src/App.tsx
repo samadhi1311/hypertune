@@ -6,7 +6,6 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { Playlist } from './lib/types';
 import Tracklist from './components/tracklist';
 import { loadSavedPlaylists } from './hooks/use-file-management';
-import { ScrollArea } from './components/ui/scroll-area';
 import TitleBar from './components/title-bar';
 
 // Define a default empty playlist

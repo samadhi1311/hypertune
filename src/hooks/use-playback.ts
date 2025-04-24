@@ -12,13 +12,13 @@ export const usePlayback = (playlist: Playlist) => {
 	const [duration, setDuration] = useState(0);
 	const [metadata, setMetadata] = useState<TrackMetadata | null>(null);
 	const [slowedEnabled, setSlowedEnabled] = useState(() => {
-		const savedSlowed = localStorage.getItem('music-player-slowed');
+		const savedSlowed = localStorage.getItem('hypertune-slowed');
 		return savedSlowed ? JSON.parse(savedSlowed) : false;
 	});
 
 	// Initialize reverbEnabled from localStorage or default to false
 	const [reverbEnabled, setReverbEnabled] = useState(() => {
-		const savedReverb = localStorage.getItem('music-player-reverb');
+		const savedReverb = localStorage.getItem('hypertune-reverb');
 		return savedReverb ? JSON.parse(savedReverb) : false;
 	});
 	const audioContextRef = useRef<AudioContext | null>(null);
@@ -135,7 +135,7 @@ export const usePlayback = (playlist: Playlist) => {
 		}
 
 		// Save reverb state to localStorage whenever it changes
-		localStorage.setItem('music-player-reverb', JSON.stringify(reverbEnabled));
+		localStorage.setItem('hypertune-reverb', JSON.stringify(reverbEnabled));
 
 		return () => {
 			// Only close the audio context when the component unmounts
@@ -145,42 +145,6 @@ export const usePlayback = (playlist: Playlist) => {
 			}
 		};
 	}, [wavesurferRef.current, reverbEnabled]);
-
-	// Effect to handle reverb toggle with dry/wet mixing and filtering
-	// useEffect(() => {
-	// 	if (!sourceNodeRef.current || !gainNodeRef.current || !reverbNodeRef.current || !audioContextRef.current || !dryGainNodeRef.current || !wetGainNodeRef.current || !filterNodeRef.current)
-	// 		return;
-
-	// 	// Disconnect all
-	// 	sourceNodeRef.current.disconnect();
-	// 	gainNodeRef.current.disconnect();
-	// 	reverbNodeRef.current.disconnect();
-	// 	dryGainNodeRef.current.disconnect();
-	// 	wetGainNodeRef.current.disconnect();
-	// 	filterNodeRef.current.disconnect();
-
-	// 	if (reverbEnabled) {
-	// 		// Dry path (direct)
-	// 		sourceNodeRef.current.connect(dryGainNodeRef.current);
-	// 		dryGainNodeRef.current.connect(gainNodeRef.current);
-
-	// 		// Wet path (with filter and reverb)
-	// 		sourceNodeRef.current.connect(filterNodeRef.current);
-	// 		filterNodeRef.current.connect(reverbNodeRef.current);
-	// 		reverbNodeRef.current.connect(wetGainNodeRef.current);
-	// 		wetGainNodeRef.current.connect(gainNodeRef.current);
-
-	// 		// Final output
-	// 		gainNodeRef.current.connect(audioContextRef.current.destination);
-	// 	} else {
-	// 		// Connect without reverb
-	// 		sourceNodeRef.current.connect(gainNodeRef.current);
-	// 		gainNodeRef.current.connect(audioContextRef.current.destination);
-	// 	}
-
-	// 	// Save reverb state to localStorage
-	// 	localStorage.setItem('music-player-reverb', JSON.stringify(reverbEnabled));
-	// }, [reverbEnabled]);
 
 	// Load and set up WaveSurfer when current track changes
 	useEffect(() => {
@@ -343,7 +307,7 @@ export const usePlayback = (playlist: Playlist) => {
 		setSlowedEnabled((prev: boolean) => {
 			const newValue = !prev;
 			// Save to localStorage inside the state updater function
-			localStorage.setItem('music-player-slowed', JSON.stringify(newValue));
+			localStorage.setItem('hypertune-slowed', JSON.stringify(newValue));
 			return newValue;
 		});
 	};
@@ -351,7 +315,7 @@ export const usePlayback = (playlist: Playlist) => {
 	const toggleReverbed = () => {
 		setReverbEnabled((prev: boolean) => {
 			const newValue = !prev;
-			localStorage.setItem('music-player-reverb', JSON.stringify(newValue));
+			localStorage.setItem('hypertune-reverb', JSON.stringify(newValue));
 			return newValue;
 		});
 	};

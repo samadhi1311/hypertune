@@ -43,6 +43,7 @@
 
 :root {
 	font-family: Inter, sans-serif;
+	letter-spacing: -0.02rem;
 	font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
 
 	--radius: 0.625rem;

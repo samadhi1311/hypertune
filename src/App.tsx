@@ -6,6 +6,7 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { Playlist } from './lib/types';
 import Tracklist from './components/tracklist';
 import { loadSavedPlaylists } from './hooks/use-file-management';
+import { ScrollArea } from './components/ui/scroll-area';
 import TitleBar from './components/title-bar';
 
 // Define a default empty playlist
@@ -27,17 +28,13 @@ function App() {
 	return (
 		<>
 			<ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
-				<div className='fixed top-0 inset-x-0 z-50'>
+				<div className='fixed top-2 left-64 right-2 z-50'>
 					<TitleBar />
 				</div>
 				<SidebarProvider className=''>
 					<AppSidebar currentPlaylist={currentPlaylist} setCurrentPlaylist={setCurrentPlaylist} savedPlaylists={savedPlaylists} setSavedPlaylists={setSavedPlaylists} />
-					<main className='flex flex-col w-full h-full'>
-						<section className='flex flex-col justify-between h-full'>
-							<div className='h-full flex flex-col gap-4'>
-								<Tracklist playlist={currentPlaylist} onPlaylistSaved={refreshPlaylists} currentTrackIndex={currentTrackIndex} />
-							</div>
-						</section>
+					<main className='flex-1'>
+						<Tracklist playlist={currentPlaylist} onPlaylistSaved={refreshPlaylists} currentTrackIndex={currentTrackIndex} />
 					</main>
 				</SidebarProvider>
 				<div className='fixed bottom-0 inset-x-0 z-50'>
